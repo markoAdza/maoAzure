@@ -14432,6 +14432,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Edit.cshtml",
+      "TargetPath": "Views\\Menus\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Details.cshtml",
+      "TargetPath": "Views\\Menus\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
       "FileKind": "mvc"
@@ -14457,6 +14467,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Create.cshtml",
+      "TargetPath": "Views\\Menus\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/Account/_ViewImports.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -14479,6 +14494,11 @@
     {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/Account/Login.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Delete.cshtml",
+      "TargetPath": "Views\\Menus\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14509,6 +14529,11 @@
     {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Delete.cshtml",
       "TargetPath": "Views\\Students\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Index.cshtml",
+      "TargetPath": "Views\\Menus\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

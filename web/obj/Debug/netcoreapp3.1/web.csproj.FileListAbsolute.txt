@@ -677,3 +677,8 @@
 /Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Orders/Details.cshtml.g.cs
 /Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Orders/Edit.cshtml.g.cs
 /Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Orders/Index.cshtml.g.cs
+/Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Menus/Create.cshtml.g.cs
+/Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Menus/Delete.cshtml.g.cs
+/Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Menus/Details.cshtml.g.cs
+/Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Menus/Edit.cshtml.g.cs
+/Users/zanspiler/FRI/2/IS/mao/web/obj/Debug/netcoreapp3.1/Razor/Views/Menus/Index.cshtml.g.cs

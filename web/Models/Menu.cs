@@ -5,28 +5,14 @@ using System.Collections.Generic;
 namespace web.Models
 {
 
-    // public enum MenuType
-    // {
-    //     Mesni, Veganski, brezSkladkorja, brezAlergenov
-    // }
-
-    // public enum FoodType
-    // {
-    //     Soup, Noodles, Meat, Dessert
-    // }
-
     public class Menu
     {
         public int MenuID { get; set; }
-        // public MenuType? MenuType { get; set; }
-
-        // public FoodType? FoodType { get; set; }
-        public string FoodType { get; set; }
-
         public string FoodName { get; set; }
+        public string FoodType { get; set; } // main, soup, dessert 
+        public string MenuType { get; set; } //  meat, vegan, no sugar, no alergens
 
         public ICollection<MenuOrder> MenuOrders { get; set; }
-
 
     }
 }

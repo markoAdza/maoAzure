@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IEnumerable<web.Models.Menu>
+
+@{
     ViewData["Title"] = "Home Page";
+
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to UNI LJ!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the Mao restaurant</h1>
+
+</div>
+
+<div class="card-columns">
+
+    @foreach (var menu in Model)
+    {
+        <div class="card">
+
+            <a href="@Url.Action("Details", "Menus", new { id=menu.MenuID }, null)
+            ">
+                <img src="~/images/@(menu.FoodType).png" />
+            </a>
+
+            <div class="card-body">
+                <h5 class="card-title">@menu.FoodName</h5>
+                <p class="card-text">@menu.MenuType</p>
+            </div>
+        </div>
+    }
+
 </div>

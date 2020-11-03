@@ -7,20 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using web.Models;
 
+
+using web.Data;
+
+
 namespace web.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly MaoContext _context;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MaoContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Menus
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(_context.Menus.ToList());
         }
 
         public IActionResult Privacy()

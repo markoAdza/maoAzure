@@ -38,6 +38,9 @@ namespace web.Data
                 FirstName = "Janez",
                 LastName = "Novak",
                 City = "Ljubljana",
+                Street = "Copova",
+                Building = "42",
+
                 Email = "janez@example.com",
                 NormalizedEmail = "XXXX@EXAMPLE>.COM",
                 UserName = "janez@example.com",

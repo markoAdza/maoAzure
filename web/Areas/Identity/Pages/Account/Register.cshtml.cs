@@ -62,6 +62,18 @@ namespace web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Required]
+            [Display(Name = "Street")]
+            public string Street { get; set; }
+
+            [Required]
+            [Display(Name = "Building")]
+            public string Building { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -85,7 +97,7 @@ namespace web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, City = Input.City, Street = Input.Street, Building = Input.Building };
 
 
 
@@ -95,17 +107,10 @@ namespace web.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
 
-                    // await _userManager.AddToRoleAsync(user, "Client");
-
-
-
+                    // add 'client' role
                     _context.UserRoles.Add(new IdentityUserRole<string> { RoleId = "2", UserId = user.Id });
 
                     _context.SaveChanges();
-
-
-
-
 
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

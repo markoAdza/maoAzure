@@ -12,9 +12,6 @@ namespace web.Data
         {
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<Student> Students { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<MenuOrder> MenuOrders { get; set; }
@@ -24,9 +21,6 @@ namespace web.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Course>().ToTable("Course");
-            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
-            modelBuilder.Entity<Student>().ToTable("Student");
 
             modelBuilder.Entity<Menu>().ToTable("Menu");
             modelBuilder.Entity<Order>().ToTable("Order");

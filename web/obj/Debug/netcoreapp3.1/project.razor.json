@@ -14387,7 +14387,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 900
+    "CSharpLanguageVersion": 800
   },
   "RootNamespace": "web",
   "Documents": [
@@ -14397,18 +14397,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Index.cshtml",
-      "TargetPath": "Views\\Students\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/_ViewImports.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Create.cshtml",
-      "TargetPath": "Views\\Students\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14424,11 +14414,6 @@
     {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Orders/Details.cshtml",
       "TargetPath": "Views\\Orders\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Courses/Edit.cshtml",
-      "TargetPath": "Views\\Courses\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14482,16 +14467,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Courses/Create.cshtml",
-      "TargetPath": "Views\\Courses\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Edit.cshtml",
-      "TargetPath": "Views\\Students\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/Account/Login.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
       "FileKind": "mvc"
@@ -14504,11 +14479,6 @@
     {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/Account/Register.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Courses/Delete.cshtml",
-      "TargetPath": "Views\\Courses\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14527,18 +14497,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Delete.cshtml",
-      "TargetPath": "Views\\Students\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Menus/Index.cshtml",
       "TargetPath": "Views\\Menus\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Courses/Index.cshtml",
-      "TargetPath": "Views\\Courses\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14547,18 +14507,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Students/Details.cshtml",
-      "TargetPath": "Views\\Students\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/zanspiler/FRI/2/IS/mao/web/Views/Courses/Details.cshtml",
-      "TargetPath": "Views\\Courses\\Details.cshtml",
       "FileKind": "mvc"
     },
     {

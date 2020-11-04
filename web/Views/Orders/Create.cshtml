@@ -18,6 +18,33 @@
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        
+                            @{
+                                int cnt = 0;
+                                List<web.Models.ViewModels.OrderedMenuData> menus = ViewBag.Menus;
+                                Console.WriteLine(menus);
+
+                                foreach (var menu in menus)
+                                {
+
+
+                                    @:<tr><td>
+                                        <input type="checkbox" name="selectedMenus" value="@menu.MenuID" />
+                                        @menu.FoodName
+                                        @:</tr></td>
+
+                                        
+
+                                }
+                                
+                                @:
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -27,4 +54,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-

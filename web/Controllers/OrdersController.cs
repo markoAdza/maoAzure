@@ -70,16 +70,33 @@ namespace web.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
+            PopulateMenuData();
+
             return View();
         }
+
+
 
         // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,Comment")] Order order)
+
+        public async Task<IActionResult> Create([Bind("OrderID,Comment")] Order order, string[] selectedMenus)
         {
+
+            order.MenuOrders = new List<MenuOrder>();
+            var selectedMenusHS = new HashSet<string>(selectedMenus);
+
+            foreach (var menu in _context.Menus)
+            {
+                if (selectedMenusHS.Contains(menu.MenuID.ToString()))
+                {
+                    order.MenuOrders.Add(new MenuOrder { OrderID = order.OrderID, MenuID = menu.MenuID });
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(order);
@@ -110,7 +127,7 @@ namespace web.Controllers
             return View(order);
         }
 
-        // Provide information for checkboxes
+        // Provide information for checkboxes @ Edit
         private void PopulateOrderedMenuData(Order order)
         {
             var allMenus = _context.Menus;
@@ -123,6 +140,23 @@ namespace web.Controllers
                     MenuID = menu.MenuID,
                     FoodName = menu.FoodName,
                     Ordered = orderMenus.Contains(menu.MenuID)
+                });
+            }
+            ViewData["Menus"] = viewModel;
+        }
+
+        // Provide information for checkboxes @ Create
+        private void PopulateMenuData()
+        {
+            var allMenus = _context.Menus;
+            var viewModel = new List<OrderedMenuData>();
+            foreach (var menu in allMenus)
+            {
+                viewModel.Add(new OrderedMenuData
+                {
+                    MenuID = menu.MenuID,
+                    FoodName = menu.FoodName,
+                    Ordered = false
                 });
             }
             ViewData["Menus"] = viewModel;

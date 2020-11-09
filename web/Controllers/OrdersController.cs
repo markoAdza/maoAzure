@@ -9,17 +9,18 @@ using web.Data;
 using web.Models;
 
 using web.Models.ViewModels;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace web.Controllers
 {
     public class OrdersController : Controller
     {
         private readonly MaoContext _context;
-
-        public OrdersController(MaoContext context)
+        private readonly UserManager<ApplicationUser> _usermanager;
+        public OrdersController(MaoContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _usermanager = userManager;
         }
 
         // // GET: Orders
@@ -32,8 +33,9 @@ namespace web.Controllers
         {
             var viewModel = new OrderIndexData();
             viewModel.Orders = await _context.Orders
+                  .Include(i => i.Client)
                   .Include(i => i.MenuOrders)
-                    .ThenInclude(i => i.Menu)
+                  .ThenInclude(i => i.Menu)
                   .AsNoTracking()
                   .ToListAsync();
 
@@ -86,6 +88,8 @@ namespace web.Controllers
         public async Task<IActionResult> Create([Bind("OrderID,Comment")] Order order, string[] selectedMenus)
         {
 
+            var currentUser = await _usermanager.GetUserAsync(User);
+
             order.MenuOrders = new List<MenuOrder>();
             var selectedMenusHS = new HashSet<string>(selectedMenus);
 
@@ -97,8 +101,12 @@ namespace web.Controllers
                 }
             }
 
+
             if (ModelState.IsValid)
             {
+                // dateCreated?
+                Console.WriteLine("Current user: " + currentUser);
+                order.Client = currentUser;
                 _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

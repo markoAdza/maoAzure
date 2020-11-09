@@ -12,15 +12,28 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Menus</th>
+
+            <th>First Name</th>
+
+            <th>Last Name</th>
+
+            <th>City</th>
+
+            <th>Street</th>
+
+            <th>Building</th>
+
+
             <th>Comment</th>
             @* user??? *@
-            <th>Menus</th>
 
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Orders)
         {
+
             string selectedRow = "";
             if (item.OrderID == (int?)ViewData["OrderID"])
             {
@@ -28,16 +41,32 @@
             }
             <tr class="@selectedRow">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Comment)
-                </td>
-
-                <td>
                     @{
                         foreach (var menu in item.MenuOrders)
                         {
                             @menu.Menu.MenuID @: @menu.Menu.FoodName <br />
+
                         }
                     }
+                </td>
+                <td>
+                    @item.Client.FirstName
+                </td>
+                <td>
+                    @item.Client.LastName
+                </td>
+                <td>
+                    @item.Client.City
+                </td>
+                <td>
+                    @item.Client.Street
+                </td>
+                <td>
+                    @item.Client.Building
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
                 </td>
                 <td>
                     <a asp-action="Index" asp-route-id="@item.OrderID">Select</a> |

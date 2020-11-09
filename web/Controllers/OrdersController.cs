@@ -31,13 +31,18 @@ namespace web.Controllers
 
         public async Task<IActionResult> Index(int? id, int? courseID)
         {
+
+            var currentUser = await _usermanager.GetUserAsync(User);
+
             var viewModel = new OrderIndexData();
             viewModel.Orders = await _context.Orders
                   .Include(i => i.Client)
                   .Include(i => i.MenuOrders)
                   .ThenInclude(i => i.Menu)
                   .AsNoTracking()
+                  .Where(o => o.Client == currentUser)
                   .ToListAsync();
+
 
             // SELECTING SPECIFIC ORDER
             if (id != null)

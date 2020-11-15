@@ -84,92 +84,6 @@ namespace web.Controllers
             return await Task.Run(() => View());
         }
 
-        // GET: Ratings/Create
-        // public async IActionResult Create()
-        // {
-
-
-        //     //ViewData["MenuID"] = new SelectList(_context.Menus, "MenuID", "FoodName");
-
-        //     // gets all menus except the ones the user has already rated
-        //     // PopulateMenuData();
-
-        //     // var allMenus = _context.Menus;
-        //     // var allRatings = _context.Ratings;
-
-        //     // var viewModel = new List<OrderedMenuData>();
-
-        //     // var currentUser = await _usermanager.GetUserAsync(User);
-
-        //     // // Console.WriteLine("USER: " + user);
-
-        //     // var ratedMenus = new List<int>();
-        //     // foreach (var rating in allRatings)
-        //     // {
-        //     //     // if (rating.Client == currentUser)
-        //     //     // {
-        //     //     // ratedMenus.Add(rating.MenuID);
-        //     //     // }
-        //     // }
-
-        //     // foreach (var menu in allMenus)
-        //     // {
-        //     //     // if (!ratedMenus.Contains(menu.MenuID))
-        //     //     //{
-        //     //     viewModel.Add(new OrderedMenuData
-        //     //     {
-        //     //         MenuID = menu.MenuID,
-        //     //         FoodName = menu.FoodName,
-        //     //         // Ordered = false
-        //     //     });
-        //     //     //}
-
-        //     // }
-
-        //     ViewData["Menus"] = viewModel;
-
-        //     return View();
-        // }
-
-        // Provide information for checkboxes @ Create
-        // private async void PopulateMenuData()
-        // {
-        //     var allMenus = _context.Menus;
-        //     var allRatings = _context.Ratings;
-
-        //     var viewModel = new List<OrderedMenuData>();
-
-        //     var currentUser = await _usermanager.GetUserAsync(User);
-
-        //     // Console.WriteLine("USER: " + user);
-
-        //     var ratedMenus = new List<int>();
-        //     foreach (var rating in allRatings)
-        //     {
-        //         // if (rating.Client == currentUser)
-        //         // {
-        //         // ratedMenus.Add(rating.MenuID);
-        //         // }
-        //     }
-
-        //     foreach (var menu in allMenus)
-        //     {
-        //         // if (!ratedMenus.Contains(menu.MenuID))
-        //         //{
-        //         viewModel.Add(new OrderedMenuData
-        //         {
-        //             MenuID = menu.MenuID,
-        //             FoodName = menu.FoodName,
-        //             // Ordered = false
-        //         });
-        //         //}
-
-        //     }
-
-        //     ViewData["Menus"] = viewModel;
-        // }
-
-
 
 
         // POST: Ratings/Create
@@ -182,46 +96,41 @@ namespace web.Controllers
 
             // add current user to the rating
             var currentUser = await _usermanager.GetUserAsync(User);
-            rating.Client = currentUser;
 
             if (ModelState.IsValid)
             {
+                rating.Client = currentUser;
                 _context.Add(rating);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuID"] = new SelectList(_context.Menus, "MenuID", "MenuID", rating.MenuID);
+
+
+
+            var viewModel = new List<OrderedMenuData>();
+
+
+            foreach (var menu in _context.Menus)
+            {
+
+                viewModel.Add(new OrderedMenuData
+                {
+                    MenuID = menu.MenuID,
+                    FoodName = menu.FoodName,
+                });
+
+            }
+
+            ViewData["Menus"] = viewModel;
+            // return await Task.Run(() => View());
+
+
+
+
             return View(rating);
 
 
-            // var currentUser = await _usermanager.GetUserAsync(User);
 
-            // order.MenuOrders = new List<MenuOrder>();
-            // var selectedMenusHS = new HashSet<string>(selectedMenus);
-
-            // foreach (var menu in _context.Menus)
-            // {
-            //     if (selectedMenusHS.Contains(menu.MenuID.ToString()))
-            //     {
-            //         order.MenuOrders.Add(new MenuOrder
-            //         {
-            //             OrderID = order.OrderID,
-            //             MenuID = menu.MenuID
-            //         });
-            //     }
-            // }
-
-
-            // if (ModelState.IsValid)
-            // {
-            //     // dateCreated?
-            //     Console.WriteLine("Current user: " + currentUser);
-            //     order.Client = currentUser;
-            //     _context.Add(order);
-            //     await _context.SaveChangesAsync();
-            //     return RedirectToAction(nameof(Index));
-            // }
-            // return View(order);
         }
 
 

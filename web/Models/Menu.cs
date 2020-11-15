@@ -14,5 +14,8 @@ namespace web.Models
 
         public ICollection<MenuOrder> MenuOrders { get; set; }
 
+        public ICollection<Rating> Ratings { get; set; }
+
+
     }
 }

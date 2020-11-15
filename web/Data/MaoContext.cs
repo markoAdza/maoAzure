@@ -14,6 +14,9 @@ namespace web.Data
 
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
+
         public DbSet<MenuOrder> MenuOrders { get; set; }
 
 
@@ -21,6 +24,7 @@ namespace web.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Rating>().ToTable("Rating");
 
             modelBuilder.Entity<Menu>().ToTable("Menu");
             modelBuilder.Entity<Order>().ToTable("Order");
@@ -29,5 +33,8 @@ namespace web.Data
             modelBuilder.Entity<MenuOrder>()
                .HasKey(c => new { c.MenuID, c.OrderID });
         }
+
+
+        public DbSet<web.Models.Rating> Rating { get; set; }
     }
 }

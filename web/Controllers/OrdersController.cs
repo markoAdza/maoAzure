@@ -23,12 +23,6 @@ namespace web.Controllers
             _usermanager = userManager;
         }
 
-        // // GET: Orders
-        // public async Task<IActionResult> Index()
-        // {
-        //     return View(await _context.Orders.ToListAsync());
-        // }
-
         public async Task<IActionResult> Index(int? id, int? courseID)
         {
 
@@ -80,6 +74,23 @@ namespace web.Controllers
             PopulateMenuData();
 
             return View();
+        }
+
+        // Provide information for checkboxes @ Create
+        private void PopulateMenuData()
+        {
+            var allMenus = _context.Menus;
+            var viewModel = new List<OrderedMenuData>();
+            foreach (var menu in allMenus)
+            {
+                viewModel.Add(new OrderedMenuData
+                {
+                    MenuID = menu.MenuID,
+                    FoodName = menu.FoodName,
+                    Ordered = false
+                });
+            }
+            ViewData["Menus"] = viewModel;
         }
 
 
@@ -158,22 +169,6 @@ namespace web.Controllers
             ViewData["Menus"] = viewModel;
         }
 
-        // Provide information for checkboxes @ Create
-        private void PopulateMenuData()
-        {
-            var allMenus = _context.Menus;
-            var viewModel = new List<OrderedMenuData>();
-            foreach (var menu in allMenus)
-            {
-                viewModel.Add(new OrderedMenuData
-                {
-                    MenuID = menu.MenuID,
-                    FoodName = menu.FoodName,
-                    Ordered = false
-                });
-            }
-            ViewData["Menus"] = viewModel;
-        }
 
 
         [HttpPost]
@@ -249,40 +244,6 @@ namespace web.Controllers
             }
         }
 
-        // [HttpPost, ActionName("Edit")]
-        // [ValidateAntiForgeryToken]
-
-        // public async Task<IActionResult> EditPost(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var orderToUpdate = await _context.Orders
-        //         .FirstOrDefaultAsync(s => s.OrderID == id);
-
-        //     if (await TryUpdateModelAsync<Order>(
-        //         orderToUpdate,
-        //         "",
-        //         i => i.Comment))
-        //     {
-
-        //         try
-        //         {
-        //             await _context.SaveChangesAsync();
-        //         }
-        //         catch (DbUpdateException /* ex */)
-        //         {
-        //             //Log the error (uncomment ex variable name and write a log.)
-        //             ModelState.AddModelError("", "Unable to save changes. " +
-        //                 "Try again, and if the problem persists, " +
-        //                 "see your system administrator.");
-        //         }
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     return View(orderToUpdate);
-        // }
 
         // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)

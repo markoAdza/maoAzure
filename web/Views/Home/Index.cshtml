@@ -17,12 +17,16 @@
         <div class="card">
 
             <a href="@Url.Action("Details", "Menus", new { id=menu.MenuID }, null)
-            ">
+                        ">
                 <img src="~/images/@(menu.FoodType).png" />
             </a>
 
             <div class="card-body">
-                <h5 class="card-title">@menu.FoodName</h5>
+                <a class="no-decoration" href="@Url.Action("Details", "Menus", new { id=menu.MenuID }, null)
+                        ">
+                    <h5 class="card-title">@menu.FoodName</h5>
+                </a>
+
                 <p class="card-text">@menu.MenuType</p>
             </div>
         </div>

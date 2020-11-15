@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(MaoContext))]
-    partial class MaoContextModelSnapshot : ModelSnapshot
+    [Migration("20201115132229_Ratings")]
+    partial class Ratings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -297,9 +299,6 @@ namespace web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClientId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("MenuID")
                         .HasColumnType("int");
 
@@ -307,8 +306,6 @@ namespace web.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("RatingID");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("MenuID");
 
@@ -390,11 +387,7 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Rating", b =>
                 {
-                    b.HasOne("web.Models.ApplicationUser", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
-                    b.HasOne("web.Models.Menu", "Menu")
+                    b.HasOne("web.Models.Menu", null)
                         .WithMany("Ratings")
                         .HasForeignKey("MenuID")
                         .OnDelete(DeleteBehavior.Cascade)

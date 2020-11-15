@@ -28,7 +28,8 @@ namespace web.Controllers
         // GET: Ratings
         public async Task<IActionResult> Index()
         {
-            var maoContext = _context.Rating.Include(r => r.Menu);
+            var currentUser = await _usermanager.GetUserAsync(User);
+            var maoContext = _context.Rating.Where(o => o.Client == currentUser).Include(r => r.Menu);
             return View(await maoContext.ToListAsync());
         }
 
@@ -53,14 +54,19 @@ namespace web.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var viewModel = new List<OrderedMenuData>();
+            PopulateMenuData(await _usermanager.GetUserAsync(User));
 
-            var currentUser = await _usermanager.GetUserAsync(User);
+            return await Task.Run(() => View());
+        }
+
+        private void PopulateMenuData(ApplicationUser user)
+        {
+            var viewModel = new List<OrderedMenuData>();
 
             var ratedMenus = new List<int>();
             foreach (var rating in _context.Ratings)
             {
-                if (rating.Client == currentUser)
+                if (rating.Client == user)
                 {
                     ratedMenus.Add(rating.MenuID);
                 }
@@ -73,15 +79,13 @@ namespace web.Controllers
                     viewModel.Add(new OrderedMenuData
                     {
                         MenuID = menu.MenuID,
-                        FoodName = menu.FoodName,
-                        // Ordered = false
+                        FoodName = menu.FoodName
                     });
                 }
 
             }
 
             ViewData["Menus"] = viewModel;
-            return await Task.Run(() => View());
         }
 
 
@@ -93,8 +97,6 @@ namespace web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RatingID,MenuID,value")] Rating rating)
         {
-
-            // add current user to the rating
             var currentUser = await _usermanager.GetUserAsync(User);
 
             if (ModelState.IsValid)
@@ -105,32 +107,10 @@ namespace web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-
-
-            var viewModel = new List<OrderedMenuData>();
-
-
-            foreach (var menu in _context.Menus)
-            {
-
-                viewModel.Add(new OrderedMenuData
-                {
-                    MenuID = menu.MenuID,
-                    FoodName = menu.FoodName,
-                });
-
-            }
-
-            ViewData["Menus"] = viewModel;
-            // return await Task.Run(() => View());
-
-
+            PopulateMenuData(currentUser);
 
 
             return View(rating);
-
-
-
         }
 
 

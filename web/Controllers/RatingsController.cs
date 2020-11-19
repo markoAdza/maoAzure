@@ -103,18 +103,14 @@ namespace web.Controllers
             {
                 rating.Client = currentUser;
                 _context.Add(rating);
+                storeAverageRating(rating);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
             PopulateMenuData(currentUser);
-
-            return View(rating); // naj nastavi selected na neki??
+            return View(rating);
         }
-
-
-        //    PopulateMenuData(await _usermanager.GetUserAsync(User));
-        //     return await Task.Run(() => View());
 
 
         // GET: Ratings/Edit/5
@@ -152,7 +148,8 @@ namespace web.Controllers
                 try
                 {
                     _context.Update(rating);
-                    await _context.SaveChangesAsync();
+                    storeAverageRating(rating);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -186,6 +183,8 @@ namespace web.Controllers
             {
                 return NotFound();
             }
+            else storeAverageRating(rating);
+
 
             return View(rating);
         }
@@ -197,6 +196,8 @@ namespace web.Controllers
         {
             var rating = await _context.Rating.FindAsync(id);
             _context.Rating.Remove(rating);
+            storeAverageRating(rating);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -205,5 +206,34 @@ namespace web.Controllers
         {
             return _context.Rating.Any(e => e.RatingID == id);
         }
+
+        private void storeAverageRating(Rating rating)
+        {
+            var sum = 0;
+            var count = 0;
+            foreach (Rating r in _context.Ratings)
+            {
+                if (r.MenuID == rating.MenuID)
+                {
+                    sum += r.value;
+                    count++;
+                }
+            }
+            float avg = (float)sum / count;
+
+            if (count > 0)
+            {
+                foreach (Menu m in _context.Menus)
+                {
+                    if (m.MenuID == rating.MenuID)
+                    {
+                        m.AvgRating = avg;
+                    }
+                }
+            }
+
+
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-
+using System.Web;
 
 using web.Data;
 
@@ -32,7 +32,6 @@ namespace web
                 try
                 {
                     var context = services.GetRequiredService<MaoContext>();
-                    // context.Database.EnsureCreated();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
@@ -52,5 +51,7 @@ namespace web
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+
     }
 }

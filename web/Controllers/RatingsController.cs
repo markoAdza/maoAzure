@@ -52,6 +52,8 @@ namespace web.Controllers
             return View(rating);
         }
 
+
+        // GET: Ratings/Create
         public async Task<IActionResult> Create()
         {
             PopulateMenuData(await _usermanager.GetUserAsync(User));
@@ -90,9 +92,7 @@ namespace web.Controllers
 
 
 
-        // POST: Ratings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Ratings/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RatingID,MenuID,value")] Rating rating)
@@ -109,10 +109,12 @@ namespace web.Controllers
 
             PopulateMenuData(currentUser);
 
-
-            return View(rating);
+            return View(rating); // naj nastavi selected na neki??
         }
 
+
+        //    PopulateMenuData(await _usermanager.GetUserAsync(User));
+        //     return await Task.Run(() => View());
 
 
         // GET: Ratings/Edit/5
@@ -128,7 +130,8 @@ namespace web.Controllers
             {
                 return NotFound();
             }
-            ViewData["MenuID"] = new SelectList(_context.Menus, "MenuID", "MenuID", rating.MenuID);
+
+            ViewData["MenuID"] = new SelectList(_context.Menus.Where(o => o.MenuID == rating.MenuID), "MenuID", "FoodName", rating.MenuID);
             return View(rating);
         }
 
@@ -164,7 +167,7 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuID"] = new SelectList(_context.Menus, "MenuID", "MenuID", rating.MenuID);
+            ViewData["MenuID"] = new SelectList(_context.Menus.Where(o => o.MenuID == rating.MenuID), "MenuID", "FoodName", rating.MenuID);
             return View(rating);
         }
 

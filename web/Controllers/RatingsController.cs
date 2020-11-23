@@ -10,6 +10,7 @@ using web.Models;
 
 using web.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace web.Controllers
 {

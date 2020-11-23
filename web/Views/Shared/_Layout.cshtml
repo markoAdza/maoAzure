@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+            <div style="background-color: lightgrey;" class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MAO</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,16 +32,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Menus"
                                 asp-action="Index">Menus</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders"
-                                asp-action="Index">Orders</a>
-                        </li>
+                        @if (ViewContext.HttpContext.User.IsInRole("Client"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ratings"
-                                asp-action="Index">Ratings</a>
-                        </li>
-
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ratings" asp-action="Index">Ratings</a>
+                                </li>
+                            }
                     </ul>
                 </div>
             </div>

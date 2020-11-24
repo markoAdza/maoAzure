@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace web.Controllers
 {
@@ -20,6 +22,8 @@ namespace web.Controllers
         }
 
         // GET: Menus
+        [Authorize(Roles = "Administrator")]
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Menus.ToListAsync());

@@ -30,7 +30,7 @@ namespace web
             services.AddControllersWithViews();
 
             services.AddDbContext<MaoContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("MaoContext")));
+        options.UseSqlServer(Configuration.GetConnectionString("AzureMaoContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128).AddEntityFrameworkStores<MaoContext>().AddDefaultUI().AddDefaultTokenProviders();
 

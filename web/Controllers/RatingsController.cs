@@ -30,6 +30,7 @@ namespace web.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _usermanager.GetUserAsync(User);
+
             var maoContext = _context.Rating.Where(o => o.Client == currentUser).Include(r => r.Menu);
             return View(await maoContext.ToListAsync());
         }
